@@ -123,17 +123,28 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
+
+    <salesforce:sfdc-config name="Salesforce_Config" >
+      <salesforce:basic-connection username="vinayakbt64@gmail.com" 
+      password="Vbt@1234" 
+      securityToken="NAR0BBzOnMg6mLX6Id3VtjuWr"/>
+    </salesforce:sfdc-config>
+
     <flow name="get:\fetch:hello_mule-config">
+
+     <salesforce:query config-ref="Salesforce_config" doc:name="Query" doc:id="igqljs" >
+     <salesforce:salesforce-query> 
+            <![CDATA[SELECT Name, emp_phone__c, emp_email__c, emp_skills__c,
+             LastModifiedDate FROM emp_profile__c]]>
+        </salesforce:salesforce-query>
+    </salesforce:query>
+
         <ee:transform doc:name="Transform Message">
             <ee:message>
                 <ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
-{
-  Name: "Vinayak",
-  Address: "Banglore",
-  Age: 24
-}]]></ee:set-payload>
+payload]]></ee:set-payload>
             </ee:message>
         </ee:transform>
     </flow>
