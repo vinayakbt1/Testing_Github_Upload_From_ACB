@@ -123,12 +123,9 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-
-    <salesforce:sfdc-config name="Salesforce_Config" >
-      <salesforce:basic-connection username="vinayakbt64@gmail.com" 
-      password="Vbt@1234" 
-      securityToken="NAR0BBzOnMg6mLX6Id3VtjuWr"/>
-    </salesforce:sfdc-config>
+<salesforce:sfdc-config name="Salesforce_Config" >
+  <salesforce:basic-connection username="${salesforce.username}" password="${salesforce.password}" securityToken="${salesforce.token}"/>
+</salesforce:sfdc-config>
 
     <flow name="get:\fetch:hello_mule-config">
 
